@@ -4,7 +4,6 @@ import (
 	"github.com/auth-web-tokens/services"
 	"github.com/auth-web-tokens/models"
 	"strings"
-	"github.com/julienschmidt/httprouter"
 	"net/http"
 )
 
@@ -40,7 +39,7 @@ func checkAuth(r *http.Request) (bool, *models.User) {
 }
 
 // authenticate
-func (*MainController) PostLoginAction(w http.ResponseWriter, r *http.Request, p httprouter.Params) {
+func (*MainController) PostLoginAction(w http.ResponseWriter, r *http.Request) {
 
 	var (
 		email = r.PostFormValue("email")
@@ -86,7 +85,7 @@ func (*MainController) PostLoginAction(w http.ResponseWriter, r *http.Request, p
 }
 
 // returns users list
-func (*MainController) GetUsersAction(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func (*MainController) GetUsersAction(w http.ResponseWriter, r *http.Request) {
 
 	var isAuthorized, user = checkAuth(r)
 
@@ -110,7 +109,7 @@ func (*MainController) GetUsersAction(w http.ResponseWriter, r *http.Request, _ 
 }
 
 // register a new user
-func (*MainController) PostRegisterAction(w http.ResponseWriter, r *http.Request, _ httprouter.Params) {
+func (*MainController) PostRegisterAction(w http.ResponseWriter, r *http.Request) {
 
 	var (
 		email = r.PostFormValue("email")

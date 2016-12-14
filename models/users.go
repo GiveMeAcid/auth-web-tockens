@@ -14,10 +14,10 @@ const (
 )
 
 type User struct {
-	Id                 string `json:"id,omitempty"`
-	Name               string `json:"name,omitempty"`
-	Email              string `json:"email,omitempty"`
-	Password           string `json:"password,omitempty"`
+	Id                 uint `gorm:"primary_key;not null"json:"id"`
+	Name               string `gorm:"type:varchar(64);not null"json:"name,omitempty"`
+	Email              string `gorm:"type:varchar(64);not null"json:"email,omitempty"`
+	Password           string `gorm:"type:varchar(64);not null"json:"password,omitempty"`
 	Age                int    `json:"age,omitempty"`
 	//Gender             Gender `json:"gender,omitempty"`
 	Role               int `gorm:"not null"`
@@ -79,20 +79,7 @@ func createUser(email, password string, role int) *User {
 	return user
 }
 
-// fill tables with test data
-func Fixtures() {
 
-	test := createUser("test@gmail.com", "1111", USER_ROLE_USER)
-	user := createUser("user@gmail.com", "1111", USER_ROLE_USER)
-	admin := createUser("admin@gmail.com", "1111", USER_ROLE_ADMIN)
 
-	services.DB.Save(test)
-	services.DB.Save(user)
-	services.DB.Save(admin)
-}
 
-// create tables
-func Migrations() {
-	services.DB.DropTableIfExists(&User{}, "users")
-	services.DB.CreateTable(&User{})
-}
+
