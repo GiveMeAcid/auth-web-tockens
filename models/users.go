@@ -25,6 +25,8 @@ type User struct {
 	AuthTokenExpiredAt time.Time `gorm:"default: null"json:"-"`
 }
 
+type Users []User
+
 //const (
 //	male Gender = "male"
 //	female Gender = "female"
