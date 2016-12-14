@@ -18,7 +18,7 @@ func main() {
 
 	//router.Method = true; // sets processing of incorrect request methods
 	//router.MethodNotAllowed = http.HandlerFunc(methodNotAllowedHandler);
-	//router.NotFoundHandler = http.HandlerFunc(notFoundHandler)
+	router.NotFoundHandler = http.HandlerFunc(notFoundHandler)
 	mainController := controllers.MainController{}
 	//router.HandleFunc("/", handlers.Status).Methods("GET")
 	//router.HandleFunc("/users", mainController.GetUsersAction).Methods("GET")
@@ -48,7 +48,7 @@ func db() {
 
 // error handler if page is not found
 func notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	services.ToJSON(w, services.MakeErrorResponse("Requested page in not found"), http.StatusNotFound)
+	services.ToJSON(w, services.MakeErrorResponse("bad request"), http.StatusNotFound)
 }
 
  //error handler if requested method is not correct

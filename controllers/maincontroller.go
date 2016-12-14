@@ -68,7 +68,7 @@ func (*MainController) PostLoginAction(w http.ResponseWriter, r *http.Request) {
 
 	user.GenerateAuthTokenData() // generates token uses in requests headers to check is user authorized
 
-	err := services.DB.Save(&user).Error
+	err := services.DB.Save(&user).Debug().Error
 
 	if (err != nil) {
 		services.ToJSON(w, services.MakeErrorResponse(err.Error()), http.StatusInternalServerError)
@@ -103,7 +103,7 @@ func (*MainController) GetUsersAction(w http.ResponseWriter, r *http.Request) {
 	// makes empty array, uses to store users from database
 	users := make([]*models.User, 0)
 
-	services.DB.Find(&users)
+	services.DB.First(&users).Debug()
 
 	services.ToJSON(w, users, http.StatusOK)
 }

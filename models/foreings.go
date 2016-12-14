@@ -20,7 +20,7 @@ func Fixtures() {
 
 func Migrations() {
 	//services.DB.DropTableIfExists(&User{}, "users")
-	services.DB.AutoMigrate(&User{})
+	services.DB.AutoMigrate(&User{}).Debug()
 	//services.DB.CreateTable(&User{})
 }
 
