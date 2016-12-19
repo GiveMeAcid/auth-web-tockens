@@ -13,13 +13,5 @@ func InitDB() {
 
 	DB = db
 
-	//if err != nil {
-	//	fmt.Printf("Database opening error -->%v\n", err)
-	//	panic("Database error")
-	//}
-	//defer db.Close()
-	//
-	//db.SingularTable(true)
-
 	fmt.Println("Connected to the database was succusfully!")
 }
