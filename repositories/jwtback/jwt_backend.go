@@ -37,10 +37,13 @@ func (backend *JWTAuthenticationBackend) GenerateToken(uuid uuid.UUID) (string, 
 		IssuedAt: time.Now().Unix(),
 		Subject: uuid.String(),
 	}
-
+	tokenString, err := token.SignedString(backend.privateKey)
+	if err != nil {
+		panic(err)
+		return "", err
+	}
 	return tokenString, nil
 }
-
 
 func getPrivateKey() *rsa.PrivateKey {
 	return
