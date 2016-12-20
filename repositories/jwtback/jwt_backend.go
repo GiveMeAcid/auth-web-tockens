@@ -52,6 +52,19 @@ func (backend *JWTAuthenticationBackend) Authenticate(user *requests.User, dbUse
 	return user.Email ==  dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
 }
 
+func (backend *JWTAuthenticationBackend) getTockenRemainingValidity(timestamp interface{}) int {
+	if validity, ok := timestamp.(float64); ok {
+		tm := time.Unix(int64(validity), 0)
+		remainer := tm.Sub(time.Now())
+		if remainer > 0 {
+			return int(remainer.Seconds() + expireOffset)
+		}
+	}
+	return expireOffset
+}
+
+
+
 func getPrivateKey() *rsa.PrivateKey {
 	return
 }
