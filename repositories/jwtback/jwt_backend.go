@@ -6,6 +6,9 @@ import (
 	"time"
 	"github.com/satori/go.uuid"
 	"github.com/auth-web-tokens/settings"
+	"github.com/auth-web-tokens/models/requests"
+	"github.com/auth-web-tokens/models"
+	"golang.org/x/crypto/bcrypt"
 )
 
 type JWTAuthenticationBackend struct {
@@ -43,6 +46,10 @@ func (backend *JWTAuthenticationBackend) GenerateToken(uuid uuid.UUID) (string, 
 		return "", err
 	}
 	return tokenString, nil
+}
+
+func (backend *JWTAuthenticationBackend) Authenticate(user *requests.User, dbUser *models.User) bool {
+	return user.Email ==  dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
 }
 
 func getPrivateKey() *rsa.PrivateKey {
