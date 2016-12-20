@@ -9,6 +9,7 @@ import (
 	"github.com/auth-web-tokens/models/requests"
 	"github.com/auth-web-tokens/models"
 	"golang.org/x/crypto/bcrypt"
+	"github.com/auth-web-tokens/services/redis"
 )
 
 type JWTAuthenticationBackend struct {
@@ -52,7 +53,7 @@ func (backend *JWTAuthenticationBackend) Authenticate(user *requests.User, dbUse
 	return user.Email ==  dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
 }
 
-func (backend *JWTAuthenticationBackend) getTockenRemainingValidity(timestamp interface{}) int {
+func (backend *JWTAuthenticationBackend) getTokenRemainingValidity(timestamp interface{}) int {
 	if validity, ok := timestamp.(float64); ok {
 		tm := time.Unix(int64(validity), 0)
 		remainer := tm.Sub(time.Now())
@@ -63,7 +64,10 @@ func (backend *JWTAuthenticationBackend) getTockenRemainingValidity(timestamp in
 	return expireOffset
 }
 
-
+func (backend *JWTAuthenticationBackend) Logout(tokenString string, token *jwt.Token) error {
+	claims := token.Claims.(jwt.MapClaims)
+	return redis.GetInstance().SetValue(tokenString, tokenString, backend.getTokenRemainingValidity(claims["exp"]))
+}
 
 func getPrivateKey() *rsa.PrivateKey {
 	return
