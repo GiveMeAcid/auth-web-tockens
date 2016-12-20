@@ -50,7 +50,7 @@ func (backend *JWTAuthenticationBackend) GenerateToken(uuid uuid.UUID) (string, 
 }
 
 func (backend *JWTAuthenticationBackend) Authenticate(user *requests.User, dbUser *models.User) bool {
-	return user.Email ==  dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
+	return user.Email == dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
 }
 
 func (backend *JWTAuthenticationBackend) getTokenRemainingValidity(timestamp interface{}) int {
