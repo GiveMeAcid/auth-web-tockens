@@ -69,6 +69,16 @@ func (backend *JWTAuthenticationBackend) Logout(tokenString string, token *jwt.T
 	return redis.GetInstance().SetValue(tokenString, tokenString, backend.getTokenRemainingValidity(claims["exp"]))
 }
 
+func (backend *JWTAuthenticationBackend) IsInBlacklist(token string) bool {
+	redisToken, _ := redis.GetInstance().GetValue(token)
+
+	if redisToken == nil {
+		return false
+	}
+
+	return true
+}
+
 func getPrivateKey() *rsa.PrivateKey {
 	return
 }

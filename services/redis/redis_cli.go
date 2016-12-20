@@ -13,3 +13,8 @@ func GetInstance() *RedisCli {
 func (redisCli *RedisCli) SetValue(key string, value string, expiration ...interface{}) error {
 	return
 }
+
+func (redisCli *RedisCli) GetValue(key string) (interface{}, error) {
+	defer redisCli.conn.Close()
+	return redisCli.conn.Do("GET", key)
+}
