@@ -1,9 +1,6 @@
 package models
 
 import (
-	"time"
-	"github.com/rs/xid"
-	"github.com/auth-web-tokens/services"
 )
 
 const (
@@ -26,44 +23,6 @@ type User struct {
 
 type Users []User
 
-func (u *User) SetPassword(plainPassword string) {
-	u.Password = services.ToSha1(plainPassword)
-}
-
-func (u *User) CheckIsPasswordValid(plainPassword string) bool {
-	return u.Password == services.ToSha1(plainPassword)
-}
-
-// generates auth token and expired time
-func (u *User) GenerateAuthTokenData() {
-
-	var (
-		guid xid.ID = xid.New()
-		duration time.Duration = time.Duration(USER_AUTH_TOKEN_LIFETIME_SECONDS)
-		expiredAt time.Time = time.Now()
-	)
-
-	expiredAt = expiredAt.Add(duration) // token will be expire in 24 hours
-
-	u.AuthToken = services.ToSha1(guid.String())
-	u.AuthTokenExpiredAt = expiredAt
-}
-
-func (u User) IsAuthTokenExpired() bool {
-	return u.AuthTokenExpiredAt.After(time.Now())
-}
-
-func createUser(email, password string, role int) *User {
-
-	user := &User{
-		Email:email,
-		Role: role,
-	}
-
-	user.SetPassword(password)
-
-	return user
-}
 
 //func (user *UserInfo) Get(email string) error {
 //	err := services.DB.Where("e_mail = ?", email).First(user).Error

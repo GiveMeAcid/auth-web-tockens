@@ -1,49 +1,65 @@
 package main
 
 import (
-	"github.com/gorilla/mux"
+
+)
+import (
+	"os"
+	"github.com/auth-web-tokens/settings"
 	"log"
-	"net/http"
 	"github.com/auth-web-tokens/services"
+	"github.com/auth-web-tokens/server"
 	"github.com/auth-web-tokens/models"
-	"github.com/auth-web-tokens/controllers"
+	"github.com/Andersen-soft/Solox/services/config"
+	"syscall"
+	"runtime"
 	"fmt"
+	"os/signal"
 )
 
-func init() {
-	db()
-}
-
 func main() {
-	router := mux.NewRouter()
+	if _, err := os.Stat(settings.Get().PrivateKeyPath); err != nil {
+		panic("Must specify private key")
+	}
+	if _, err := os.Stat(settings.Get().PublicKeyPath); err != nil {
+		panic("Must specify public key")
+	}
 
-	router.NotFoundHandler = http.HandlerFunc(notFoundHandler)
-	mainController := controllers.MainController{}
-	router.HandleFunc("/login", mainController.PostLoginAction).Methods("POST")
-	router.HandleFunc("/register", mainController.PostRegisterAction).Methods("POST")
-	router.HandleFunc("/users", mainController.GetUsersAction).Methods("GET")
-	log.Fatal(http.ListenAndServe(":3030", router))
+	log.Println("Initializing DB...")
+	err := services.InitDB()
+	if err != nil {
+		panic(err)
+	}
+	log.Println("Migration DB...")
+	models.Migrations(services.DB)
+
+	HandleSignals()
+
+	log.Println("Starting server...")
+	parsedPort := config.Config.BasePort
+	s := server.New(":" + parsedPort)
+
+	if err := s.ListenAndServe(); err != nil {
+		log.Println("Error " + err.Error())
+	}
 }
 
-func db() {
-	fmt.Println("****************")
-	fmt.Println("Database connection...")
-	services.InitDB()
-	fmt.Println("****************")
-	fmt.Println("Run migrations...")
-	fmt.Println("****************")
-	models.Migrations()
-	fmt.Println("Run fixtures...")
-	models.Fixtures()
-	fmt.Println("****************")
-}
-
-// error handler if page is not found
-func notFoundHandler(w http.ResponseWriter, r *http.Request) {
-	services.ToJSON(w, services.MakeErrorResponse("bad request"), http.StatusNotFound)
-}
-
-//error handler if requested method is not correct
-func methodNotAllowedHandler(w http.ResponseWriter, r *http.Request) {
-	services.ToJSON(w, services.MakeErrorResponse("Method '" + r.Method + "' not allowed"), http.StatusMethodNotAllowed)
+func HandleSignals() {
+	sigChan := make(chan os.Signal)
+	go func() {
+		stacktrace := make([]byte, 1<<20)
+		for sig := range sigChan {
+			switch sig {
+			case syscall.SIGQUIT:
+				length := runtime.Stack(stacktrace, true)
+				fmt.Println(string(stacktrace[:length]))
+			case syscall.SIGINT:
+				fallthrough
+			case syscall.SIGTERM:
+				fmt.Println("Shutting down...")
+				os.Exit(0)
+			}
+		}
+	}()
+	signal.Notify(sigChan, syscall.SIGQUIT, syscall.SIGINT, syscall.SIGTERM)
 }
