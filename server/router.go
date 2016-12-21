@@ -29,6 +29,8 @@ func New(bindAddr string) *Server {
 	s.handleFunc(sr.R, "/login", controllers.Login).Methods("POST")
 	s.handlePrivateFunc(sr.R, "/refresh_token", repositories.RequireTokenAuthentication, controllers.RefreshToken).Methods("GET")
 	s.handlePrivateFunc(sr.R, "/logout", repositories.RequireTokenAuthentication, controllers.Logout).Methods("POST")
+
+	return s
 }
 
 type HandlerFunc func(w http.ResponseWriter, r *http.Request)
