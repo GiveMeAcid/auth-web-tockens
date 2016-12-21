@@ -8,6 +8,8 @@ import (
 	"github.com/auth-web-tokens/models"
 	"github.com/auth-web-tokens/services/auth"
 	"github.com/gorilla/context"
+	"github.com/auth-web-tokens/models/response"
+	"log"
 )
 
 // authenticate
@@ -33,9 +35,13 @@ func Login(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	w.Header().Set("Content-Type", "json/application")
-	w.WriteHeader(responseStatus)
-	w.Write(token)
+	profileInfo := response.NewProfileInfo(dbUser)
+	profileInfo.Token = token
+
+	// send hello ws message
+	//websockets.SendHello(dbUser.UUID.String())
+
+	MakeResponseSuccess(w, profileInfo)
 }
 
 func RefreshToken(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
@@ -65,16 +71,16 @@ func Logout(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
 	}
 }
 
-//func MakeResponseSuccess(w http.ResponseWriter, data interface{}) {
-//	js, err := json.Marshal(data)
-//	if err != nil {
-//		log.Printf("[http] error encodind data %s    %+v", err, data)
-//	}
-//
-//	w.WriteHeader(http.StatusOK)
-//	w.Header().Set("Content-Type", "application/json")
-//	w.Write(js)
-//}
+func MakeResponseSuccess(w http.ResponseWriter, data interface{}) {
+	js, err := json.Marshal(data)
+	if err != nil {
+		log.Printf("[http] error encodind data %s    %+v", err, data)
+	}
+
+	w.WriteHeader(http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
+}
 
 func MakeResponseFail(w http.ResponseWriter, status int, message string) {
 	js, _ := json.Marshal(map[string]string{"error": message})

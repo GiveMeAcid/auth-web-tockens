@@ -52,6 +52,11 @@ func (backend *JWTAuthenticationBackend) GenerateToken(uuid uuid.UUID) (string, 
 	return tokenString, nil
 }
 
+func (backend *JWTAuthenticationBackend) GetUserId(token *jwt.Token) uuid.UUID {
+	claims := token.Claims.(*jwt.StandardClaims)
+	return uuid.FromStringOrNil(claims.Subject)
+}
+
 func (backend *JWTAuthenticationBackend) Authenticate(user *requests.User, dbUser *models.User) bool {
 	return user.Email == dbUser.Email && bcrypt.CompareHashAndPassword([]byte(dbUser.Password), []byte(user.Password)) == nil
 }

@@ -1,28 +1,30 @@
 package models
 
 import (
+	"github.com/satori/go.uuid"
+	"github.com/auth-web-tokens/services"
 )
 
-const (
-	USER_ROLE_USER int = 1
-	USER_ROLE_ADMIN int = 2
-	USER_AUTH_TOKEN_LIFETIME_SECONDS int = 60 * 60 * 24
-)
 
 type User struct {
-	UUID     string `json:"uuid" form:"-"`
+	UUID     uuid.UUID `gorm:"type:uuid;index:idx_user_uuid;not null;column:uuid" json:"uuid"`
 	Id       uint `gorm:"primary_key;not null"json:"id"`
 	Name     string `gorm:"type:varchar(64);not null"json:"name,omitempty"`
 	Email    string `gorm:"type:varchar(64);not null"json:"email,omitempty" form:"email"`
 	Password string `gorm:"type:varchar(64);not null"json:"password,omitempty" form:"password"`
 	Age      int    `json:"age,omitempty"`
 	Role     int `gorm:"not null"`
-	//AuthToken          string `gorm:"default: null"json:"-"`
-	//AuthTokenExpiredAt time.Time `gorm:"default: null"json:"-"`
 }
 
 type Users []User
 
+func (user *User) GetById(uuid uuid.UUID) error {
+	err := services.DB.Where(&User{UUID: uuid}).First(user).Error
+	if err == nil {
+		panic(err)
+	}
+	return err
+}
 
 //func (user *UserInfo) Get(email string) error {
 //	err := services.DB.Where("e_mail = ?", email).First(user).Error

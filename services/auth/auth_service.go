@@ -11,7 +11,7 @@ import (
 	"github.com/dgrijalva/jwt-go"
 )
 
-func Login(requestUser requests.User, dbUser models.User) (int, string){
+func Login(requestUser *requests.User, dbUser *models.User) (int, string){
 	authBackend :=  jwtback.InitAuthenticationBackend()
 
 	if authBackend.Authenticate(requestUser, dbUser) {
@@ -25,7 +25,7 @@ func Login(requestUser requests.User, dbUser models.User) (int, string){
 	return http.StatusUnauthorized, ""
 }
 
-func RefreshToken(requestUser requests.User, user *models.User) []byte {
+func RefreshToken(requestUser *requests.User, user *models.User) []byte {
 	authBackend := jwtback.InitAuthenticationBackend()
 	token, err := authBackend.GenerateToken(user.UUID)
 	if err != nil {
@@ -39,7 +39,7 @@ func RefreshToken(requestUser requests.User, user *models.User) []byte {
 	return response
 }
 
-func Logout(req http.Request) error {
+func Logout(req *http.Request) error {
 	authBackend := jwtback.InitAuthenticationBackend()
 	tokenRequest, err := request.ParseFromRequest(req, request.OAuth2Extractor, func(token *jwt.Token) (interface{}, error){
 		return authBackend.PubicKey, nil
