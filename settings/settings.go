@@ -28,10 +28,10 @@ func Init() {
 		fmt.Println("Warning: Setting preproduction environment due to lack of GO_ENV value")
 		env = "preproduction"
 	}
-	LoadEnvironmentalSettings(env)
+	LoadSettingsByEnv(env)
 }
 
-func LoadEnvironmentalSettings(env string) {
+func LoadSettingsByEnv(env string) {
 	content, err := ioutil.ReadFile(environments[env])
 	if err != nil {
 		fmt.Println("Error while reading config file", err)

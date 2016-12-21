@@ -10,6 +10,9 @@ import (
 	"github.com/auth-web-tokens/models"
 	"golang.org/x/crypto/bcrypt"
 	"github.com/auth-web-tokens/services/redis"
+	"io/ioutil"
+	"encoding/pem"
+	"crypto/x509"
 )
 
 type JWTAuthenticationBackend struct {
@@ -80,10 +83,37 @@ func (backend *JWTAuthenticationBackend) IsInBlacklist(token string) bool {
 }
 
 func getPrivateKey() *rsa.PrivateKey {
+	pembytes, err := ioutil.ReadFile(settings.Get().PrivateKeyPath)
+	if err != nil {
+		panic(err)
+	}
+	data, _ := pem.Decode([]byte(pembytes))
+	privateKeyImported, err := x509.ParsePKCS1PrivateKey(data.Bytes)
 
-	return
+	if err != nil {
+		panic(err)
+	}
+
+	return privateKeyImported
 }
 
 func getPublicKey() *rsa.PublicKey {
-	return
+	pembytes, err := ioutil.ReadFile(settings.Get().PublicKeyPath)
+	if err != nil {
+		panic(err)
+	}
+
+	data, _ := pem.Decode([]byte(pembytes))
+	publicKeyImported, err := x509.ParsePKIXPublicKey(data.Bytes)
+	if err != nil {
+		panic(err)
+	}
+
+	rsaPub, ok := publicKeyImported.(*rsa.PublicKey)
+
+	if !ok {
+		panic(err)
+	}
+
+	return rsaPub
 }
