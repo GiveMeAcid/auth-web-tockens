@@ -1,87 +1,22 @@
 package controllers
 
 import (
-	"github.com/auth-web-tokens/services"
-	"github.com/auth-web-tokens/models"
-	"strings"
 	"net/http"
+	"strings"
+	"github.com/auth-web-tokens/models/requests"
+	"github.com/auth-web-tokens/services"
+	"encoding/json"
+	"github.com/auth-web-tokens/models"
 )
 
-// define empty structure
-type MainController struct {
-
-}
-
-// method used to check is user authorized and returns him
-func checkAuth(r *http.Request) (bool, *models.User) {
-
-	var (
-		isAuthorized bool = false
-		authToken string = r.Header.Get("Auth-Token")
-		user models.User = models.User{AuthToken:authToken}
-	)
-
-	// token is not empty
-	if (len(authToken) != 0) {
-
-		services.DB.Where(user).First(&user)
-
-		if (user.Id != 0) {
-			isAuthorized = true
-		}
-
-		if (user.IsAuthTokenExpired()) {
-			isAuthorized = false
-		}
-	}
-
-	return isAuthorized, &user
-}
-
 // authenticate
-func (*MainController) PostLoginAction(w http.ResponseWriter, r *http.Request) {
+func Login(w http.ResponseWriter, r *http.Request) {
+	requestUser := new(requests.User)
+	decoder := json.NewDecoder(r.Body)
+	decoder.Decode(&requestUser)
 
-	var (
-		email = r.PostFormValue("email")
-		password = r.PostFormValue("password")
-	)
-
-	if (len(email) == 0 || len(password) == 0) {
-		services.ToJSON(w, services.MakeErrorResponse("Fill email or password"), http.StatusBadRequest)
-		return
-	}
-
-	user := models.User{Email:email}
-
-	services.DB.Where(user).First(&user)
-
-	// user not found
-	if user.Id == 0 {
-		services.ToJSON(w, services.MakeErrorResponse("User not found"), http.StatusBadRequest)
-		return
-	}
-
-	if (!user.CheckIsPasswordValid(password)) {
-		services.ToJSON(w, services.MakeErrorResponse("Incorrect password"), http.StatusBadRequest)
-		return
-	}
-
-	user.GenerateAuthTokenData() // generates token uses in requests headers to check is user authorized
-
-	err := services.DB.Save(&user).Debug().Error
-
-	if (err != nil) {
-		services.ToJSON(w, services.MakeErrorResponse(err.Error()), http.StatusInternalServerError)
-		return
-	}
-
-	var response = map[string]interface{}{
-		"authToken": user.AuthToken,
-		"authTokenExpiredAt": user.AuthTokenExpiredAt,
-		"user": user,
-	}
-
-	services.ToJSON(w, response, http.StatusOK)
+	dbUser := new(models.User)
+	responseStatus, token := services.Login(requestUser, dbUser)
 }
 
 // returns users list
