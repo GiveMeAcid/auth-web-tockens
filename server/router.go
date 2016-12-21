@@ -6,6 +6,7 @@ import (
 	"github.com/gorilla/mux"
 	"github.com/codegangsta/negroni"
 	"github.com/auth-web-tokens/controllers"
+	"github.com/auth-web-tokens/repositories"
 )
 
 type Server struct {
@@ -26,7 +27,8 @@ func New(bindAddr string) *Server {
 	}
 
 	s.handleFunc(sr.R, "/login", controllers.Login).Methods("POST")
-	s.handleFunc(sr.R, "", controllers.Logout).Methods("POST")
+	s.handlePrivateFunc(sr.R, "/refresh_token", repositories.RequireTokenAuthentication, controllers.RefreshToken).Methods("GET")
+	s.handlePrivateFunc(sr.R, "/logout", repositories.RequireTokenAuthentication, controllers.Logout).Methods("POST")
 }
 
 type HandlerFunc func(w http.ResponseWriter, r *http.Request)

@@ -6,7 +6,6 @@ import (
 	"github.com/auth-web-tokens/models/requests"
 	"encoding/json"
 	"github.com/auth-web-tokens/models"
-	"log"
 	"github.com/auth-web-tokens/services/auth"
 	"github.com/gorilla/context"
 )
@@ -54,6 +53,16 @@ func RefreshToken(w http.ResponseWriter, r *http.Request, next http.HandlerFunc)
 
 	w.Header().Set("Content-Type", "application/json")
 	w.Write(auth.RefreshToken(requestUser, user))
+}
+
+func Logout(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	err := auth.Logout(r)
+	if err != nil {
+		MakeResponseFail(w, http.StatusInternalServerError, err.Error())
+		return
+	} else {
+		w.WriteHeader(http.StatusOK)
+	}
 }
 
 //func MakeResponseSuccess(w http.ResponseWriter, data interface{}) {
