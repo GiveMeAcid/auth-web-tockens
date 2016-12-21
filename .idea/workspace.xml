@@ -2,8 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55b687be-be62-4fc5-8d34-0f8bf37e2322" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/redis/redis_cli.go" afterPath="$PROJECT_DIR$/services/redis/redis_cli.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/settings/settings.go" afterPath="$PROJECT_DIR$/settings/settings.go" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -40,7 +39,7 @@
       <file leaf-file-name="jwt_backend.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repositories/jwtback/jwt_backend.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="363">
+            <state relative-caret-position="1368">
               <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="e#17#306#0" expanded="true" />
@@ -49,23 +48,35 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="settings.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="settings.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/settings/settings.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="144">
-              <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
+            <state relative-caret-position="485">
+              <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+              <folding>
+                <element signature="e#18#71#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="env.go" pinned="false" current-in-tab="false">
+        <entry file="file:///usr/lib/go-1.6/src/os/env.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="197">
+              <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="redis_cli.go" pinned="false" current-in-tab="true">
+      <file leaf-file-name="redis_cli.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="378">
-              <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+            <state relative-caret-position="179">
+              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
               <folding>
-                <element signature="e#15#56#0" expanded="true" />
+                <element signature="e#15#76#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -140,13 +151,13 @@
         <option value="$PROJECT_DIR$/main.go" />
         <option value="$PROJECT_DIR$/services/auth-service.go" />
         <option value="$PROJECT_DIR$/services/auth_service.go" />
-        <option value="$PROJECT_DIR$/settings/settings.go" />
         <option value="$PROJECT_DIR$/repositories/middleware.go" />
         <option value="$PROJECT_DIR$/models/requests/user.go" />
         <option value="$PROJECT_DIR$/repositories/jwtback/jwt_backend.go" />
         <option value="$PROJECT_DIR$/keys/private_key" />
         <option value="$PROJECT_DIR$/keys/public_key.pub" />
         <option value="$PROJECT_DIR$/services/redis/redis_cli.go" />
+        <option value="$PROJECT_DIR$/settings/settings.go" />
       </list>
     </option>
   </component>
@@ -552,12 +563,12 @@
       <workItem from="1481895947014" duration="3679000" />
       <workItem from="1482144368415" duration="12391000" />
       <workItem from="1482228555796" duration="17501000" />
-      <workItem from="1482305398680" duration="972000" />
+      <workItem from="1482305398680" duration="2894000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="73081000" />
+    <option name="totallyTimeSpent" value="75003000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -621,13 +632,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/services/db.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/models/foreings.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
@@ -881,6 +885,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="127" column="5" lean-forward="false" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -940,14 +945,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/settings/settings.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="144">
-          <caret line="8" column="6" lean-forward="false" selection-start-line="8" selection-start-column="6" selection-end-line="8" selection-end-column="6" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/services/helpers.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
@@ -969,9 +966,19 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+          <folding>
+            <element signature="e#15#76#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/repositories/jwtback/jwt_backend.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="363">
+        <state relative-caret-position="1368">
           <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
           <folding>
             <element signature="e#17#306#0" expanded="true" />
@@ -979,12 +986,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
+    <entry file="file:///usr/lib/go-1.6/src/os/env.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+        <state relative-caret-position="197">
+          <caret line="78" column="32" lean-forward="true" selection-start-line="78" selection-start-column="32" selection-end-line="78" selection-end-column="32" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/settings/settings.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="485">
+          <caret line="43" column="0" lean-forward="false" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
           <folding>
-            <element signature="e#15#56#0" expanded="true" />
+            <element signature="e#18#71#0" expanded="true" />
           </folding>
         </state>
       </provider>
