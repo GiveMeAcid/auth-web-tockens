@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55b687be-be62-4fc5-8d34-0f8bf37e2322" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/keys/private_key" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/keys/public_key.pub" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/repositories/jwtback/jwt_backend.go" afterPath="$PROJECT_DIR$/repositories/jwtback/jwt_backend.go" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/services/redis/redis_cli.go" afterPath="$PROJECT_DIR$/services/redis/redis_cli.go" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -42,31 +40,11 @@
       <file leaf-file-name="jwt_backend.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/repositories/jwtback/jwt_backend.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="305">
-              <caret line="39" column="77" lean-forward="false" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
+            <state relative-caret-position="363">
+              <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
               <folding>
                 <element signature="e#17#306#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="private_key" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/keys/private_key">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="public_key.pub" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/keys/public_key.pub">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="90">
-              <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -81,11 +59,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="redis_cli.go" pinned="false" current-in-tab="false">
+      <file leaf-file-name="redis_cli.go" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
+            <state relative-caret-position="378">
+              <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
               <folding>
                 <element signature="e#15#56#0" expanded="true" />
               </folding>
@@ -106,7 +84,7 @@
       <file leaf-file-name="users.go" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/models/users.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-108">
+            <state relative-caret-position="252">
               <caret line="18" column="91" lean-forward="false" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
               <folding>
                 <element signature="e#16#94#0" expanded="true" />
@@ -164,11 +142,11 @@
         <option value="$PROJECT_DIR$/services/auth_service.go" />
         <option value="$PROJECT_DIR$/settings/settings.go" />
         <option value="$PROJECT_DIR$/repositories/middleware.go" />
-        <option value="$PROJECT_DIR$/services/redis/redis_cli.go" />
         <option value="$PROJECT_DIR$/models/requests/user.go" />
         <option value="$PROJECT_DIR$/repositories/jwtback/jwt_backend.go" />
         <option value="$PROJECT_DIR$/keys/private_key" />
         <option value="$PROJECT_DIR$/keys/public_key.pub" />
+        <option value="$PROJECT_DIR$/services/redis/redis_cli.go" />
       </list>
     </option>
   </component>
@@ -235,6 +213,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -415,13 +395,11 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$GOPATH$/src/github.com/Andersen-soft/Solox" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="js.eslint.eslintPackage" value="" />
     <property name="DefaultGoTemplateProperty" value="Go File" />
     <property name="settings.editor.selected.configurable" value="preferences.keymap" />
@@ -545,6 +523,9 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="55b687be-be62-4fc5-8d34-0f8bf37e2322" name="Default" comment="" />
@@ -570,12 +551,13 @@
       <workItem from="1481886110256" duration="1492000" />
       <workItem from="1481895947014" duration="3679000" />
       <workItem from="1482144368415" duration="12391000" />
-      <workItem from="1482228555796" duration="16427000" />
+      <workItem from="1482228555796" duration="17501000" />
+      <workItem from="1482305398680" duration="972000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71035000" />
+    <option name="totallyTimeSpent" value="73081000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -643,9 +625,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -653,9 +632,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -689,9 +665,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="7" lean-forward="false" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -699,9 +672,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="108">
           <caret line="6" column="1" lean-forward="false" selection-start-line="6" selection-start-column="1" selection-end-line="6" selection-end-column="1" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -734,9 +704,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -744,9 +711,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="0" lean-forward="false" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -779,9 +743,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
           <caret line="9" column="4" lean-forward="false" selection-start-line="9" selection-start-column="4" selection-end-line="9" selection-end-column="4" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -789,9 +750,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="7" column="0" lean-forward="true" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -817,9 +775,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="72">
           <caret line="7" column="33" lean-forward="true" selection-start-line="7" selection-start-column="33" selection-end-line="7" selection-end-column="33" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -827,9 +782,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="27" lean-forward="false" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -856,9 +808,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="5" column="1" lean-forward="true" selection-start-line="5" selection-start-column="1" selection-end-line="5" selection-end-column="1" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -866,9 +815,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="90">
           <caret line="5" column="27" lean-forward="true" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -914,9 +860,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="396">
           <caret line="22" column="43" lean-forward="false" selection-start-line="22" selection-start-column="43" selection-end-line="22" selection-end-column="43" />
-          <folding>
-            <element signature="e#16#116#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -938,7 +881,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="197">
           <caret line="127" column="5" lean-forward="false" selection-start-line="127" selection-start-column="5" selection-end-line="127" selection-end-column="5" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -946,9 +888,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="2" column="7" lean-forward="true" selection-start-line="2" selection-start-column="7" selection-end-line="2" selection-end-column="7" />
-          <folding>
-            <element signature="e#18#84#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -964,9 +903,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1713">
           <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="0" />
-          <folding>
-            <element signature="e#21#130#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -996,20 +932,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/models/users.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-108">
+        <state relative-caret-position="252">
           <caret line="18" column="91" lean-forward="false" selection-start-line="18" selection-start-column="91" selection-end-line="18" selection-end-column="91" />
           <folding>
             <element signature="e#16#94#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="19" column="1" lean-forward="false" selection-start-line="19" selection-start-column="1" selection-end-line="19" selection-end-column="1" />
-          <folding>
-            <element signature="e#15#56#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1026,17 +952,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="287">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/repositories/jwtback/jwt_backend.go">
+    <entry file="file://$PROJECT_DIR$/keys/public_key.pub">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="305">
-          <caret line="39" column="77" lean-forward="false" selection-start-line="39" selection-start-column="77" selection-end-line="39" selection-end-column="77" />
-          <folding>
-            <element signature="e#17#306#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="90">
+          <caret line="5" column="24" lean-forward="true" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
         </state>
       </provider>
     </entry>
@@ -1044,15 +966,26 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="252">
           <caret line="14" column="29" lean-forward="false" selection-start-line="14" selection-start-column="29" selection-end-line="14" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/keys/public_key.pub">
+    <entry file="file://$PROJECT_DIR$/repositories/jwtback/jwt_backend.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="5" column="24" lean-forward="false" selection-start-line="5" selection-start-column="24" selection-end-line="5" selection-end-column="24" />
-          <folding />
+        <state relative-caret-position="363">
+          <caret line="82" column="0" lean-forward="true" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding>
+            <element signature="e#17#306#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/services/redis/redis_cli.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="45" lean-forward="false" selection-start-line="21" selection-start-column="45" selection-end-line="21" selection-end-column="45" />
+          <folding>
+            <element signature="e#15#56#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
