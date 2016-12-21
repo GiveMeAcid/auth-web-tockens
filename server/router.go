@@ -5,6 +5,7 @@ import (
 	"time"
 	"github.com/gorilla/mux"
 	"github.com/codegangsta/negroni"
+	"github.com/auth-web-tokens/controllers"
 )
 
 type Server struct {
@@ -25,6 +26,7 @@ func New(bindAddr string) *Server {
 	}
 
 	s.handleFunc(sr.R, "/login", controllers.Login).Methods("POST")
+	s.handleFunc(sr.R, "", controllers.Logout).Methods("POST")
 }
 
 type HandlerFunc func(w http.ResponseWriter, r *http.Request)

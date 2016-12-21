@@ -65,6 +65,20 @@ func createUser(email, password string, role int) *User {
 	return user
 }
 
+//func (user *UserInfo) Get(email string) error {
+//	err := services.DB.Where("e_mail = ?", email).First(user).Error
+//	if err == nil {
+//		err = user.UserSettings.GetUserSettigs(user.UserSettingsFk)
+//		if err == nil {
+//			err = user.UserFilters.GetUserFilters(user.UserFiltersFk)
+//			if err == nil {
+//				err = user.Phone.GetPhone(user.PhoneFk)
+//			}
+//		}
+//	}
+//
+//	return err
+//}
 
 
 

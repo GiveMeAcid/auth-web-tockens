@@ -4,9 +4,11 @@ import (
 	"net/http"
 	"strings"
 	"github.com/auth-web-tokens/models/requests"
-	"github.com/auth-web-tokens/services"
 	"encoding/json"
 	"github.com/auth-web-tokens/models"
+	"log"
+	"github.com/auth-web-tokens/services/auth"
+	"github.com/gorilla/context"
 )
 
 // authenticate
@@ -15,75 +17,59 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	decoder := json.NewDecoder(r.Body)
 	decoder.Decode(&requestUser)
 
+	if strings.EqualFold(requestUser.Email, "") ||
+		strings.EqualFold(requestUser.Password, "") ||
+		strings.EqualFold(requestUser.UUID, "") == false {
+		MakeResponseFail(w, http.StatusBadRequest, "Login is not valid")
+		return
+	}
+
 	dbUser := new(models.User)
-	responseStatus, token := services.Login(requestUser, dbUser)
+
+	responseStatus, token := auth.Login(requestUser, dbUser)
+
+	w.WriteHeader(responseStatus)
+	if responseStatus == 401 {
+		MakeResponseFail(w, http.StatusUnauthorized, "unauthorized")
+		return
+	}
+
+	w.Header().Set("Content-Type", "json/application")
+	w.WriteHeader(responseStatus)
+	w.Write(token)
 }
 
-// returns users list
-func (*MainController) GetUsersAction(w http.ResponseWriter, r *http.Request) {
+func RefreshToken(w http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+	requestUser := new(requests.User)
+	decoder := json.NewDecoder(r.Body)
+	decoder.Decode(&requestUser)
 
-	var isAuthorized, user = checkAuth(r)
-
-	if (!isAuthorized) {
-		services.ToJSON(w, services.MakeErrorResponse("You are not authorized"), http.StatusUnauthorized)
+	currentUser, ok := context.GetOk(r, "currentUser")
+	if !ok {
+		MakeResponseFail(w, http.StatusNotFound, requests.UserNotFound.Error())
 		return
 	}
 
-	// only admins can see users
-	if (user.Role != models.USER_ROLE_ADMIN) {
-		services.ToJSON(w, services.MakeErrorResponse("Access denied"), http.StatusForbidden)
-		return
-	}
+	user := currentUser.(*models.User)
 
-	// makes empty array, uses to store users from database
-	users := make([]*models.User, 0)
-
-	services.DB.First(&users).Debug()
-
-	services.ToJSON(w, users, http.StatusOK)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(auth.RefreshToken(requestUser, user))
 }
 
-// register a new user
-func (*MainController) PostRegisterAction(w http.ResponseWriter, r *http.Request) {
+//func MakeResponseSuccess(w http.ResponseWriter, data interface{}) {
+//	js, err := json.Marshal(data)
+//	if err != nil {
+//		log.Printf("[http] error encodind data %s    %+v", err, data)
+//	}
+//
+//	w.WriteHeader(http.StatusOK)
+//	w.Header().Set("Content-Type", "application/json")
+//	w.Write(js)
+//}
 
-	var (
-		email = r.PostFormValue("email")
-		password = r.PostFormValue("password")
-		confirmPassword = r.PostFormValue("confirm_password")
-	)
-
-	// validate entered data
-	if (len(email) == 0 || len(password) == 0 || len(confirmPassword) == 0) {
-		services.ToJSON(w, services.MakeErrorResponse("Fill all required fields"), http.StatusBadRequest)
-		return
-	}
-
-	if (!services.IsEmailValid(email)) {
-		services.ToJSON(w, services.MakeErrorResponse("Email is invalid"), http.StatusBadRequest)
-		return
-	}
-
-	if ((strings.Compare(password, confirmPassword)) != 0) {
-		services.ToJSON(w, services.MakeErrorResponse("Fields 'password' and 'confirm_password' must be the same"), http.StatusBadRequest)
-		return
-	}
-
-	user := models.User{Email:email}
-
-	// check is user with entered email is not exists in the database
-	services.DB.Where(user).First(&user)
-
-	if (user.Id != 0) {
-		services.ToJSON(w, services.MakeErrorResponse("User with entered email is exists"), http.StatusBadRequest)
-		return;
-	}
-
-	user.SetPassword(password)
-	user.Role = models.USER_ROLE_USER
-
-	// insert new user
-	services.DB.Save(&user)
-
-	// returns created user
-	services.ToJSON(w, user, http.StatusOK)
+func MakeResponseFail(w http.ResponseWriter, status int, message string) {
+	js, _ := json.Marshal(map[string]string{"error": message})
+	w.WriteHeader(status)
+	w.Header().Set("Content-Type", "application/json")
+	w.Write(js)
 }
