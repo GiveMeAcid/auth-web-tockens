@@ -7,7 +7,6 @@ import (
 	"github.com/auth-web-tokens/controllers"
 	"github.com/rs/cors"
 	"log"
-	"github.com/Andersen-soft/Solox/services/config"
 	"runtime"
 )
 
@@ -31,19 +30,19 @@ func CreateServerRouter() ServerRouter {
 	})
 	n.Use(c)
 
-	recovery := negroni.Recovery{
-		Logger:     log.New(config.LogFile, "\r\n", 0),
-		PrintStack: false,
-		StackAll:   false,
-		StackSize:  1024 * 8,
-	}
-
-	recovery.ErrorHandlerFunc = logRecoveryError
-	n.Use(recovery)
-
-	n.Use(&negroni.Logger{
-		ALogger: log.New(config.LogFile, "\r\n", 0),
-	})
+	//recovery := negroni.Recovery{
+	//	Logger:     log.New(config.LogFile, "\r\n", 0),
+	//	PrintStack: false,
+	//	StackAll:   false,
+	//	StackSize:  1024 * 8,
+	//}
+	//
+	//recovery.ErrorHandlerFunc = logRecoveryError
+	//n.Use(recovery)
+	//
+	//n.Use(&negroni.Logger{
+	//	ALogger: log.New(config.LogFile, "\r\n", 0),
+	//})
 
 	n.UseHandler(r)
 

@@ -13,6 +13,17 @@ var environments = map[string]string{
 	//"tests":         "../../settings/tests.json",
 }
 
+type Configuration struct {
+	Database     string       `yaml:"database,omitempty"`
+	BaseUrl      string       `yaml:"base_url,omitempty"`
+	BasePort     string       `yaml:"base_port,omitempty"`
+	//LogFile      string       `yaml:"logfile,omitempty"`
+	//Debug        bool         `yaml:"debug"`
+	RedisAddress string       `yaml:"redis_address,omitempty"`
+	RedisAuth    string       `yaml:"redis_auth,omitempty"`
+	JWTSettings  Settings  `yaml:"jwt_settings,omitempty"`
+}
+
 type Settings struct {
 	PrivateKeyPath     string
 	PublicKeyPath      string

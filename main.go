@@ -10,7 +10,7 @@ import (
 	"github.com/auth-web-tokens/services"
 	"github.com/auth-web-tokens/server"
 	"github.com/auth-web-tokens/models"
-	"github.com/Andersen-soft/Solox/services/config"
+	"github.com/auth-web-tokens/services/config"
 	"syscall"
 	"runtime"
 	"fmt"
@@ -18,7 +18,7 @@ import (
 )
 
 func main() {
-	if _, err := os.Stat(settings.Get().PrivateKeyPath); err != nil {
+	if _, err := os.Stat(config.Config.PrivateKeyPath); err != nil {
 		panic("Must specify private key")
 	}
 	if _, err := os.Stat(settings.Get().PublicKeyPath); err != nil {
