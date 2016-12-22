@@ -5,7 +5,6 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"time"
 	"github.com/satori/go.uuid"
-	"github.com/auth-web-tokens/settings"
 	"github.com/auth-web-tokens/models/requests"
 	"github.com/auth-web-tokens/models"
 	"golang.org/x/crypto/bcrypt"
@@ -13,6 +12,7 @@ import (
 	"io/ioutil"
 	"encoding/pem"
 	"crypto/x509"
+	"github.com/auth-web-tokens/services/config"
 )
 
 type JWTAuthenticationBackend struct {
@@ -40,7 +40,7 @@ func InitAuthenticationBackend() *JWTAuthenticationBackend {
 func (backend *JWTAuthenticationBackend) GenerateToken(uuid uuid.UUID) (string, error) {
 	token := jwt.New(jwt.SigningMethodRS512)
 	token.Claims = &jwt.StandardClaims{
-		ExpiresAt: time.Now().Add(time.Hour * time.Duration(settings.Get().JWTExpirationDelta)).Unix(),
+		ExpiresAt: time.Now().Add(time.Hour * time.Duration(config.Config.JWTSettings.JWTExpirationDelta)).Unix(),
 		IssuedAt: time.Now().Unix(),
 		Subject: uuid.String(),
 	}
@@ -88,7 +88,7 @@ func (backend *JWTAuthenticationBackend) IsInBlacklist(token string) bool {
 }
 
 func getPrivateKey() *rsa.PrivateKey {
-	pembytes, err := ioutil.ReadFile(settings.Get().PrivateKeyPath)
+	pembytes, err := ioutil.ReadFile(config.Config.JWTSettings.PrivateKeyPath)
 	if err != nil {
 		panic(err)
 	}
@@ -103,7 +103,7 @@ func getPrivateKey() *rsa.PrivateKey {
 }
 
 func getPublicKey() *rsa.PublicKey {
-	pembytes, err := ioutil.ReadFile(settings.Get().PublicKeyPath)
+	pembytes, err := ioutil.ReadFile(config.Config.JWTSettings.PublicKeyPath)
 	if err != nil {
 		panic(err)
 	}

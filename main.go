@@ -5,7 +5,6 @@ import (
 )
 import (
 	"os"
-	"github.com/auth-web-tokens/settings"
 	"log"
 	"github.com/auth-web-tokens/services"
 	"github.com/auth-web-tokens/server"
@@ -18,19 +17,19 @@ import (
 )
 
 func main() {
-	if _, err := os.Stat(config.Config.PrivateKeyPath); err != nil {
+	if _, err := os.Stat(config.Config.JWTSettings.PrivateKeyPath); err != nil {
 		panic("Must specify private key")
 	}
-	if _, err := os.Stat(settings.Get().PublicKeyPath); err != nil {
+	if _, err := os.Stat(config.Config.JWTSettings.PublicKeyPath); err != nil {
 		panic("Must specify public key")
 	}
 
-	log.Println("Initializing DB...")
+	log.Println("Initializing database...")
 	err := services.InitDB()
 	if err != nil {
 		panic(err)
 	}
-	log.Println("Migration DB...")
+	log.Println("Migration database...")
 	models.Migrations(services.DB)
 
 	HandleSignals()

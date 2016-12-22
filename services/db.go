@@ -2,21 +2,34 @@ package services
 
 import (
 	"github.com/jinzhu/gorm"
-	"fmt"
+	"github.com/auth-web-tokens/services/config"
 	_ "github.com/lib/pq"
+	"log"
 )
 
 var DB *gorm.DB
 
 func InitDB() error {
-	db, err := gorm.Open("postgres", "host=localhost user=postgres dbname=web-tokens sslmode=disable password=31780")
+	databaseString := config.Config.Database
+
+	if db, err := open(databaseString); err == nil {
+		DB = db
+	} else {
+		return err
+	}
+	return nil
+}
+
+func open(connectionString string) (*gorm.DB, error) {
+	db, err := gorm.Open("postgres", connectionString)
 
 	if err != nil {
-		return  err
+		return nil, err
 	}
 
 	db.SingularTable(true)
-	fmt.Println("Connected to the database was succusfully!")
-
-	return nil
+	if config.LogFile != nil {
+		db.SetLogger(log.New(config.LogFile, "\r\n", 0))
+	}
+	return db, nil
 }

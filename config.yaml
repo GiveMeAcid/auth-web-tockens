@@ -4,18 +4,8 @@ base_port: "8989"
 debug: true
 logfile: debug.log
 redis_address:
-#user_settings:
-#    online_ttl: 60
-#    photo_base_url: http://solox.andersenlab.com/photo/
-#    photo_path: ./
-#mail_settings:
-#    enabled: true
-#    from: "login@gmail.com"
-#    login: "login"
-#    password: "password"
-#    host: "smtp.gmail.com"
-#    port: 587
+
 jwt_settings:
-    private_key_path: "./keys/private_key"
-    public_key_path: "./keys/public_key.pub"
+    private_key_path: "/home/arctur/workspace/src/github.com/auth-web-tokens/keys/private_key"
+    public_key_path: "/home/arctur/workspace/src/github.com/auth-web-tokens/keys/public_key.pub"
     jwt_expiration_delta: 5

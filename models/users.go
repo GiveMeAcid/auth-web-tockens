@@ -5,15 +5,12 @@ import (
 	"github.com/auth-web-tokens/services"
 )
 
-
 type User struct {
 	UUID     uuid.UUID `gorm:"type:uuid;index:idx_user_uuid;not null;column:uuid" json:"uuid"`
-	Id       uint `gorm:"primary_key;not null"json:"id"`
+	Id       uint `gorm:"primary_key:true;index:idx_user_id;auto_increment:true;column:id" json:"-"`
 	Name     string `gorm:"type:varchar(64);not null"json:"name,omitempty"`
-	Email    string `gorm:"type:varchar(64);not null"json:"email,omitempty" form:"email"`
-	Password string `gorm:"type:varchar(64);not null"json:"password,omitempty" form:"password"`
-	Age      int    `json:"age,omitempty"`
-	Role     int `gorm:"not null"`
+	Password string `gorm:"type:varchar(64);not null" validate:"nonzero,max=50" json:"password,omitempty"`
+	Email    string `gorm:"type:varchar(255)" validate:"nonzero,max=255,regexp=^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\\.[a-zA-Z0-9-.]+$" json:"email"`
 }
 
 type Users []User

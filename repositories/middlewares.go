@@ -10,10 +10,15 @@ import (
 	"github.com/gorilla/context"
 )
 
+var ArgumentExtractor = &request.MultiExtractor{
+	request.AuthorizationHeaderExtractor,
+	request.ArgumentExtractor{"token"},
+}
+
 func RequireTokenAuthentication(rw http.ResponseWriter, req *http.Request, next http.HandlerFunc) {
 	authBackend := jwtback.InitAuthenticationBackend()
 
-	token, err := request.ParseFromRequest(req, request.OAuth2Extractor, func(token *jwt.Token) (interface{}, error) {
+	token, err := request.ParseFromRequest(req, ArgumentExtractor, func(token *jwt.Token) (interface{}, error) {
 		if _, ok := token.Method.(*jwt.SigningMethodRSA); !ok {
 			return nil, fmt.Errorf("Unexpected signing method: %v", token.Header["alg"])
 		} else {
