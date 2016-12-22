@@ -82,3 +82,21 @@
 2016/12/22 11:35:22 Migration database...
 2016/12/22 11:35:22 Starting server...
 2016/12/22 11:35:24 http: multiple response.WriteHeader calls
+2016/12/22 13:21:31 http: multiple response.WriteHeader calls
+2016/12/22 13:21:34 http: multiple response.WriteHeader calls
+2016/12/22 13:21:34 http: multiple response.WriteHeader calls
+2016/12/22 13:21:35 http: multiple response.WriteHeader calls
+2016/12/22 13:21:35 http: multiple response.WriteHeader calls
+2016/12/22 13:21:36 http: multiple response.WriteHeader calls
+2016/12/22 13:21:37 http: multiple response.WriteHeader calls
+2016/12/22 13:21:38 http: multiple response.WriteHeader calls
+2016/12/22 13:21:38 http: multiple response.WriteHeader calls
+2016/12/22 13:21:39 http: multiple response.WriteHeader calls
+2016/12/22 13:21:40 http: multiple response.WriteHeader calls
+2016/12/22 13:21:41 http: multiple response.WriteHeader calls
+2016/12/22 13:21:42 http: multiple response.WriteHeader calls
+2016/12/22 13:21:42 http: multiple response.WriteHeader calls
+2016/12/22 13:21:43 http: multiple response.WriteHeader calls
+2016/12/22 13:21:43 http: multiple response.WriteHeader calls
+2016/12/22 13:21:44 http: multiple response.WriteHeader calls
+2016/12/22 13:21:44 http: multiple response.WriteHeader calls

@@ -6,13 +6,13 @@ import (
 )
 
 type User struct {
-	UUID     uuid.UUID `json:"uuid"`
+	UUID uuid.UUID `json:"uuid"`
 }
 
 type ProfileInfo struct {
-	UUID        uuid.UUID     `json:"uuid"`
-	EMail       string        `json:"email"`
-	Token       string        `json:"token,omitempty"`
+	UUID  uuid.UUID     `json:"uuid"`
+	EMail string        `json:"email"`
+	Token string        `json:"token,omitempty"`
 }
 
 func NewProfileInfo(user *models.User) *ProfileInfo {

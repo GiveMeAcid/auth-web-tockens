@@ -13,7 +13,7 @@ import (
 var Config settings.Configuration
 var LogFile *os.File
 
-func init(){
+func init() {
 	var configFile string
 
 	if configFile = os.Getenv("WEB-TOKENS"); configFile == "" {
@@ -54,16 +54,15 @@ func EnableLogfile(logfileName string) *os.File {
 
 	//try to create log folder
 	if len(logfileNameSlice) > 1 {
-		logfileNameSlice = logfileNameSlice[:len(logfileNameSlice)-1]
+		logfileNameSlice = logfileNameSlice[:len(logfileNameSlice) - 1]
 		logPath := strings.Join(logfileNameSlice, string(filepath.Separator))
 		os.Mkdir(logPath, 0777)
 	}
 
-	f, err := os.OpenFile(logFile, os.O_RDWR|os.O_CREATE|os.O_APPEND, 0666)
+	f, err := os.OpenFile(logFile, os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
 	if err != nil {
 		log.Fatalf("error opening file: %v", err)
 	}
-
 
 	log.SetOutput(f)
 	LogFile = f

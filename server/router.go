@@ -42,14 +42,14 @@ func (s *Server) handleFunc(router *mux.Router, route string, fn HandlerFunc) *m
 	})
 }
 
-func (s *Server) handlePrivateFunc(router *mux.Router, route string, required negroni.HandlerFunc, fn negroni.HandlerFunc) *mux.Route{
+func (s *Server) handlePrivateFunc(router *mux.Router, route string, required negroni.HandlerFunc, fn negroni.HandlerFunc) *mux.Route {
 	return router.Handle(route,
-			negroni.New(
-				negroni.HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
-					rw.Header().Set("Content-Type", "application/json")
-					next(rw, r)
-				}),
-				negroni.HandlerFunc(required),
-				negroni.HandlerFunc(fn),
-			))
+		negroni.New(
+			negroni.HandlerFunc(func(rw http.ResponseWriter, r *http.Request, next http.HandlerFunc) {
+				rw.Header().Set("Content-Type", "application/json")
+				next(rw, r)
+			}),
+			negroni.HandlerFunc(required),
+			negroni.HandlerFunc(fn),
+		))
 }

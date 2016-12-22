@@ -1,8 +1,6 @@
 package main
 
-import (
-
-)
+import ()
 import (
 	"os"
 	"log"
@@ -46,7 +44,7 @@ func main() {
 func HandleSignals() {
 	sigChan := make(chan os.Signal)
 	go func() {
-		stacktrace := make([]byte, 1<<20)
+		stacktrace := make([]byte, 1 << 20)
 		for sig := range sigChan {
 			switch sig {
 			case syscall.SIGQUIT:

@@ -5,14 +5,14 @@ import (
 	"github.com/dgrijalva/jwt-go"
 	"time"
 	"github.com/satori/go.uuid"
-	"github.com/auth-web-tokens/models/requests"
-	"github.com/auth-web-tokens/models"
 	"golang.org/x/crypto/bcrypt"
+	"github.com/auth-web-tokens/models"
+	"github.com/auth-web-tokens/models/requests"
 	"github.com/auth-web-tokens/services/redis"
+	"github.com/auth-web-tokens/services/config"
 	"io/ioutil"
 	"encoding/pem"
 	"crypto/x509"
-	"github.com/auth-web-tokens/services/config"
 )
 
 type JWTAuthenticationBackend struct {

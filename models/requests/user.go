@@ -11,7 +11,7 @@ type User struct {
 }
 
 var (
-	UserNotFound          = errors.New("User not found")
+	UserNotFound = errors.New("User not found")
 	EmailUnavailableError = errors.New("Email already used")
-	InvalidPassworError   = errors.New("Invalid current password")
+	InvalidPassworError = errors.New("Invalid current password")
 )
