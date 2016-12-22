@@ -26,6 +26,14 @@ func Login(w http.ResponseWriter, r *http.Request) {
 	}
 
 	dbUser := new(models.User)
+	if err := dbUser.Get(requestUser.Email); err != nil {
+		MakeResponseFail(w, http.StatusInternalServerError, err.Error())
+		return
+	}
+	if dbUser == nil {
+		MakeResponseFail(w, http.StatusBadRequest, "User is not exist")
+		return
+	}
 
 	responseStatus, token := auth.Login(requestUser, dbUser)
 

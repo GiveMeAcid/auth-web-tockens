@@ -23,6 +23,15 @@ func (user *User) GetById(uuid uuid.UUID) error {
 	return err
 }
 
+func (user *User) Get(email string) error {
+	err := services.DB.Where("email = ?", email).First(user).Error
+	if err == nil {
+
+	}
+
+	return err
+}
+
 //func (user *UserInfo) Get(email string) error {
 //	err := services.DB.Where("e_mail = ?", email).First(user).Error
 //	if err == nil {
