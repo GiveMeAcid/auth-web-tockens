@@ -8,7 +8,7 @@ import (
 
 func Migrations(db *gorm.DB) {
 	//services.DB.DropTableIfExists(&User{}, "users")
-	db.AutoMigrate(&User{}).Debug()
+	db.AutoMigrate(&User{},&Conversation{}, &Message{}).Debug()
 	//services.DB.CreateTable(&User{})
 	//db.Exec("INSERT INTO user VALUES ('7bee9999-230e-47a2-aa4b-351c846a3262', '$2a$10$IRkp9aHaZQJuqgdoMLMLdOfojqMsRp4Infad9aiKrnYybxv1bgTZS')")
 	id := uuid.FromStringOrNil("7bee9999-230e-47a2-aa4b-351c846a3262")

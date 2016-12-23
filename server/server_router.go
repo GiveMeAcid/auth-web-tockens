@@ -28,22 +28,8 @@ func CreateServerRouter() ServerRouter {
 		AllowedHeaders: []string{"Authorization", "Content-Type"},
 		Debug:          true,
 	})
+
 	n.Use(c)
-
-	//recovery := negroni.Recovery{
-	//	Logger:     log.New(config.LogFile, "\r\n", 0),
-	//	PrintStack: false,
-	//	StackAll:   false,
-	//	StackSize:  1024 * 8,
-	//}
-	//
-	//recovery.ErrorHandlerFunc = logRecoveryError
-	//n.Use(recovery)
-	//
-	//n.Use(&negroni.Logger{
-	//	ALogger: log.New(config.LogFile, "\r\n", 0),
-	//})
-
 	n.UseHandler(r)
 
 	sr := ServerRouter{
